@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// <ROOT>/App.js
 
-export default function App() {
+import React from "react";
+
+import {
+  SafeAreaView,
+  StyleSheet,
+  KeyboardAvoidingView,
+  StatusBar,
+} from "react-native";
+
+//import LoginView from "./App/Views/Login/LoginView";
+import LoginView from "./src/screens/LoginView";
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <KeyboardAvoidingView style={{ flex: 1 }} enabled>
+      <StatusBar barStyle="dark-content" />
+
+      <SafeAreaView style={styles.container}>
+        <LoginView />
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#f6f6f6",
   },
 });
+
+export default App;
