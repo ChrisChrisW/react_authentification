@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 
 import Spinner from "react-native-loading-spinner-overlay";
+import jwt_decode from "jwt-decode"; // https://www.npmjs.com/package/jwt-decode
 
 import APIKit, { setClientToken } from "../Api/APIKit";
 
@@ -89,6 +90,17 @@ class Login extends Component {
       );
     }
     return message;
+  }
+
+  onProfile() {
+    const token = this.state.token;
+    if (!token) return;
+
+    const decoded = jwt_decode(token); // decode jwt content
+    console.log(decoded);
+
+    const decodedHeader = jwt_decode(token, { header: true }); // decode jwt header
+    console.log(decodedHeader);
   }
 
   onGet() {
@@ -197,7 +209,7 @@ class Login extends Component {
             <Text>Successfully authorized!</Text>
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={() => this.onPost()}
+              onPress={() => this.onProfile()}
             >
               <Text style={styles.loginButtonText}>Get token</Text>
             </TouchableOpacity>
